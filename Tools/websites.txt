@@ -1,0 +1,8 @@
+https://www.webfx.com/tools/emoji-cheat-sheet/
+https://api.github.com/emojis
+
+
+https://medium.com/@aallan/hands-on-with-the-coral-dev-board-adbcc317b6af
+https://medium.com/@ageitgey/snagging-parking-spaces-with-mask-r-cnn-and-python-955f2231c400
+https://medium.com/@erayerdin/send-sms-with-python-eab7a5854d3a
+
