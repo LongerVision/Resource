@@ -158,7 +158,7 @@ pca_result = pca.fit_transform(x_subset)
 print ('PCA done! Time elapsed: {} seconds'.format(time.time()-time_start))
 ```
 
-    PCA done! Time elapsed: 0.8138697147369385 seconds
+    PCA done! Time elapsed: 0.5348165035247803 seconds
 
 
 
@@ -183,7 +183,7 @@ top_two_comp = pca_df[['pca1','pca2']] # taking first and second principal compo
 fashion_scatter(top_two_comp.values,y_subset) # Visualizing the PCA output
 ```
 
-    /tmp/ipykernel_3920353/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+    /tmp/ipykernel_3933556/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
     Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
       sc = ax.scatter(x[:,0], x[:,1], lw=0, s=40, c=palette[colors.astype(np.int)])
 
@@ -193,17 +193,17 @@ fashion_scatter(top_two_comp.values,y_subset) # Visualizing the PCA output
 
     (<Figure size 576x576 with 1 Axes>,
      <AxesSubplot:>,
-     <matplotlib.collections.PathCollection at 0x7fe6a076ddc0>,
-     [Text(774.4497664231191, -689.6949155563809, '0'),
-      Text(42.86381926043403, -1429.3643908318586, '1'),
-      Text(1098.2843326494453, 376.97532328885563, '2'),
-      Text(329.2719860683943, -1111.4898091146058, '3'),
-      Text(1266.9709868256896, 295.46620083887933, '4'),
-      Text(-1589.5573233914733, 61.86773399535723, '5'),
-      Text(713.4727983676287, -65.68701122970194, '6'),
-      Text(-1521.4109429510434, 335.66562528106664, '7'),
-      Text(63.81768171672234, 1003.3250404610617, '8'),
-      Text(-645.6906091272845, 1168.2384038909963, '9')])
+     <matplotlib.collections.PathCollection at 0x7f7c4f53f850>,
+     [Text(774.4497664223061, -689.6949155476061, '0'),
+      Text(42.86381925975287, -1429.3643908539411, '1'),
+      Text(1098.2843326494994, 376.97532331118737, '2'),
+      Text(329.27198606825175, -1111.4898090914419, '3'),
+      Text(1266.9709868256284, 295.46620085140637, '4'),
+      Text(-1589.5573233916487, 61.867733944621115, '5'),
+      Text(713.4727983678018, -65.6870112103383, '6'),
+      Text(-1521.4109429506607, 335.66562530753083, '7'),
+      Text(63.817681716998116, 1003.3250404594542, '8'),
+      Text(-645.6906091270496, 1168.238403887924, '9')])
 
 
 
@@ -228,7 +228,7 @@ print ('t-SNE done! Time elapsed: {} seconds'.format(time.time()-time_start))
       warnings.warn(
 
 
-    t-SNE done! Time elapsed: 40.98912692070007 seconds
+    t-SNE done! Time elapsed: 45.03704285621643 seconds
 
 
 
@@ -236,7 +236,7 @@ print ('t-SNE done! Time elapsed: {} seconds'.format(time.time()-time_start))
 fashion_scatter(fashion_tsne, y_subset)
 ```
 
-    /tmp/ipykernel_3920353/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+    /tmp/ipykernel_3933556/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
     Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
       sc = ax.scatter(x[:,0], x[:,1], lw=0, s=40, c=palette[colors.astype(np.int)])
 
@@ -246,7 +246,7 @@ fashion_scatter(fashion_tsne, y_subset)
 
     (<Figure size 576x576 with 1 Axes>,
      <AxesSubplot:>,
-     <matplotlib.collections.PathCollection at 0x7fe6a0420820>,
+     <matplotlib.collections.PathCollection at 0x7f7c499e0280>,
      [Text(778.7831, -690.5499, '0'),
       Text(41.839653, -1422.7478, '1'),
       Text(1117.2075, 377.60907, '2'),
@@ -278,6 +278,10 @@ print ('PCA with 50 components done! Time elapsed: {} seconds'.format(time.time(
 print ('Cumulative variance explained by 50 principal components: {}'.format(np.sum(pca_50.explained_variance_ratio_)))
 ```
 
+    PCA with 50 components done! Time elapsed: 2.018453598022461 seconds
+    Cumulative variance explained by 50 principal components: 0.8625135013024849
+
+
 
 ```python
 import time
@@ -289,7 +293,44 @@ fashion_pca_tsne = TSNE(learning_rate='auto', init='pca', random_state=RS).fit_t
 print ('t-SNE done! Time elapsed: {} seconds'.format(time.time()-time_start))
 ```
 
+    /home/lvision/.local/lib/python3.8/site-packages/sklearn/manifold/_t_sne.py:982: FutureWarning: The PCA initialization in TSNE will change to have the standard deviation of PC1 equal to 1e-4 in 1.2. This will ensure better convergence.
+      warnings.warn(
+
+
+    t-SNE done! Time elapsed: 59.91525077819824 seconds
+
+
 
 ```python
 fashion_scatter(fashion_pca_tsne, y_subset)
 ```
+
+    /tmp/ipykernel_3933556/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+    Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+      sc = ax.scatter(x[:,0], x[:,1], lw=0, s=40, c=palette[colors.astype(np.int)])
+
+
+
+
+
+    (<Figure size 576x576 with 1 Axes>,
+     <AxesSubplot:>,
+     <matplotlib.collections.PathCollection at 0x7f7c4f14ffd0>,
+     [Text(782.7402, -690.1889, '0'),
+      Text(40.012688, -1424.8954, '1'),
+      Text(1115.0133, 379.83078, '2'),
+      Text(330.938, -1106.6307, '3'),
+      Text(1275.2522, 285.24908, '4'),
+      Text(-1579.6534, 48.903595, '5'),
+      Text(719.25684, -78.809, '6'),
+      Text(-1508.828, 345.81622, '7'),
+      Text(72.70152, 1012.2786, '8'),
+      Text(-645.2057, 1171.5784, '9')])
+
+
+
+
+    
+![png](EDA-tSNE-2-MNIST_files/EDA-tSNE-2-MNIST_14_2.png)
+    
+
