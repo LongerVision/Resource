@@ -44,11 +44,14 @@ def load_mnist(path, kind='train'):
 ```python
 X_train, y_train = load_mnist('/media/lvision/Sabrent/datasets/fashion_mnist', kind='train')
 print(X_train.shape)
+print(X_train[0].shape)
 print(y_train)
 print(y_train.shape)
+
 ```
 
     (60000, 784)
+    (784,)
     [9 0 0 ... 3 0 5]
     (60000,)
 
@@ -58,6 +61,7 @@ print(y_train.shape)
 import time
 import pandas as pd
 import numpy as np
+from PIL import Image as im
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as PathEffects
 %matplotlib inline
@@ -69,6 +73,31 @@ sns.set_context("notebook", font_scale=1.5,
                 rc={"lines.linewidth": 2.5})
 RS = 123
 ```
+
+
+```python
+plt.gray()
+fig = plt.figure(figsize=(16, 8))
+columns = 12
+rows = 6
+for i in range(0, columns*rows):
+    data = im.fromarray(X_train[i].reshape(28,28))
+    fig.add_subplot(rows, columns, i+1)
+    plt.imshow(data)
+    plt.axis('off')
+plt.show()
+
+```
+
+
+    <Figure size 432x288 with 0 Axes>
+
+
+
+    
+![png](EDA-tSNE-2-MNIST_files/EDA-tSNE-2-MNIST_4_1.png)
+    
+
 
 
 ```python
@@ -129,7 +158,7 @@ pca_result = pca.fit_transform(x_subset)
 print ('PCA done! Time elapsed: {} seconds'.format(time.time()-time_start))
 ```
 
-    PCA done! Time elapsed: 0.7926383018493652 seconds
+    PCA done! Time elapsed: 0.8138697147369385 seconds
 
 
 
@@ -154,7 +183,7 @@ top_two_comp = pca_df[['pca1','pca2']] # taking first and second principal compo
 fashion_scatter(top_two_comp.values,y_subset) # Visualizing the PCA output
 ```
 
-    /tmp/ipykernel_3852428/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+    /tmp/ipykernel_3920353/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
     Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
       sc = ax.scatter(x[:,0], x[:,1], lw=0, s=40, c=palette[colors.astype(np.int)])
 
@@ -164,23 +193,23 @@ fashion_scatter(top_two_comp.values,y_subset) # Visualizing the PCA output
 
     (<Figure size 576x576 with 1 Axes>,
      <AxesSubplot:>,
-     <matplotlib.collections.PathCollection at 0x7fc7190a8220>,
-     [Text(774.4497664226483, -689.6949155550468, '0'),
-      Text(42.86381926014401, -1429.364390836378, '1'),
-      Text(1098.2843326495163, 376.9753232934469, '2'),
-      Text(329.2719860683994, -1111.489809090023, '3'),
-      Text(1266.9709868256105, 295.4662008396093, '4'),
-      Text(-1589.557323392114, 61.86773393697598, '5'),
-      Text(713.4727983678105, -65.68701122739054, '6'),
-      Text(-1521.4109429504147, 335.665625321843, '7'),
-      Text(63.81768171682446, 1003.3250404493501, '8'),
-      Text(-645.6906091267293, 1168.2384039046956, '9')])
+     <matplotlib.collections.PathCollection at 0x7fe6a076ddc0>,
+     [Text(774.4497664231191, -689.6949155563809, '0'),
+      Text(42.86381926043403, -1429.3643908318586, '1'),
+      Text(1098.2843326494453, 376.97532328885563, '2'),
+      Text(329.2719860683943, -1111.4898091146058, '3'),
+      Text(1266.9709868256896, 295.46620083887933, '4'),
+      Text(-1589.5573233914733, 61.86773399535723, '5'),
+      Text(713.4727983676287, -65.68701122970194, '6'),
+      Text(-1521.4109429510434, 335.66562528106664, '7'),
+      Text(63.81768171672234, 1003.3250404610617, '8'),
+      Text(-645.6906091272845, 1168.2384038909963, '9')])
 
 
 
 
     
-![png](EDA-tSNE-2-MNIST_files/EDA-tSNE-2-MNIST_8_2.png)
+![png](EDA-tSNE-2-MNIST_files/EDA-tSNE-2-MNIST_9_2.png)
     
 
 
@@ -199,7 +228,7 @@ print ('t-SNE done! Time elapsed: {} seconds'.format(time.time()-time_start))
       warnings.warn(
 
 
-    t-SNE done! Time elapsed: 43.96088123321533 seconds
+    t-SNE done! Time elapsed: 40.98912692070007 seconds
 
 
 
@@ -207,7 +236,7 @@ print ('t-SNE done! Time elapsed: {} seconds'.format(time.time()-time_start))
 fashion_scatter(fashion_tsne, y_subset)
 ```
 
-    /tmp/ipykernel_3852428/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+    /tmp/ipykernel_3920353/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
     Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
       sc = ax.scatter(x[:,0], x[:,1], lw=0, s=40, c=palette[colors.astype(np.int)])
 
@@ -217,7 +246,7 @@ fashion_scatter(fashion_tsne, y_subset)
 
     (<Figure size 576x576 with 1 Axes>,
      <AxesSubplot:>,
-     <matplotlib.collections.PathCollection at 0x7fc718ff0700>,
+     <matplotlib.collections.PathCollection at 0x7fe6a0420820>,
      [Text(778.7831, -690.5499, '0'),
       Text(41.839653, -1422.7478, '1'),
       Text(1117.2075, 377.60907, '2'),
@@ -233,7 +262,7 @@ fashion_scatter(fashion_tsne, y_subset)
 
 
     
-![png](EDA-tSNE-2-MNIST_files/EDA-tSNE-2-MNIST_10_2.png)
+![png](EDA-tSNE-2-MNIST_files/EDA-tSNE-2-MNIST_11_2.png)
     
 
 
@@ -249,10 +278,6 @@ print ('PCA with 50 components done! Time elapsed: {} seconds'.format(time.time(
 print ('Cumulative variance explained by 50 principal components: {}'.format(np.sum(pca_50.explained_variance_ratio_)))
 ```
 
-    PCA with 50 components done! Time elapsed: 2.172032594680786 seconds
-    Cumulative variance explained by 50 principal components: 0.8625161212057489
-
-
 
 ```python
 import time
@@ -264,44 +289,7 @@ fashion_pca_tsne = TSNE(learning_rate='auto', init='pca', random_state=RS).fit_t
 print ('t-SNE done! Time elapsed: {} seconds'.format(time.time()-time_start))
 ```
 
-    /home/lvision/.local/lib/python3.8/site-packages/sklearn/manifold/_t_sne.py:982: FutureWarning: The PCA initialization in TSNE will change to have the standard deviation of PC1 equal to 1e-4 in 1.2. This will ensure better convergence.
-      warnings.warn(
-
-
-    t-SNE done! Time elapsed: 40.08835172653198 seconds
-
-
 
 ```python
 fashion_scatter(fashion_pca_tsne, y_subset)
 ```
-
-    /tmp/ipykernel_3852428/2307473512.py:11: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
-    Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-      sc = ax.scatter(x[:,0], x[:,1], lw=0, s=40, c=palette[colors.astype(np.int)])
-
-
-
-
-
-    (<Figure size 576x576 with 1 Axes>,
-     <AxesSubplot:>,
-     <matplotlib.collections.PathCollection at 0x7fc71745d790>,
-     [Text(782.2962, -689.9176, '0'),
-      Text(41.347614, -1423.7305, '1'),
-      Text(1113.7422, 381.17953, '2'),
-      Text(331.26837, -1107.6791, '3'),
-      Text(1275.3954, 286.95758, '4'),
-      Text(-1581.365, 46.893547, '5'),
-      Text(717.2779, -79.60612, '6'),
-      Text(-1509.5262, 348.0835, '7'),
-      Text(73.7935, 1008.3449, '8'),
-      Text(-645.55835, 1172.3257, '9')])
-
-
-
-
-    
-![png](EDA-tSNE-2-MNIST_files/EDA-tSNE-2-MNIST_13_2.png)
-    
-
